@@ -1,0 +1,20 @@
+class Solution {
+public:
+    int maxFont(string text, int w, int h, vector<int>& fonts, FontInfo fontInfo) {
+        long long n,m,o,p,q;
+        p=0;
+        q=fonts.size();
+        while(p!=q){
+           o=(p+q)/2;
+           m=0;
+           n=fontInfo.getHeight(fonts[o]);
+           for(int i=0;i<text.size();i++){
+               m+=fontInfo.getWidth(fonts[o],text[i]);
+           }
+           if(n<=h && m<=w) p=o+1;
+           else q=o; 
+        }
+        if(p) return fonts[p-1];
+        return -1;
+    }
+};
