@@ -1,0 +1,12 @@
+class Solution {
+public:
+    int missingElement(vector<int>& a, int k) {
+        int n= a.size();
+        int m=0;
+        for(int i=1;i<n;i++){
+            if((m+a[i]-a[i-1]-1)<k) m+=a[i]-a[i-1]-1;
+            else return a[i-1]+k-m;
+        }
+        return a[n-1]+k-m;
+    }
+};
