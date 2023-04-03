@@ -1,0 +1,21 @@
+class Solution {
+public:
+    int leftMostColumnWithOne(BinaryMatrix &a) {
+        int n,m,o,p,q;
+        n=a.dimensions()[0];
+        o=a.dimensions()[1];
+        m=o;
+        for(int i=0;i<n;i++){
+            p=-1;
+            for(int j=6;j>=0;j--){
+                q=p+pow(2,j);
+                if(q<o){
+                    if(a.get(i,q)==0) p=q;
+                }
+            }
+            o=min(p+1,o);
+        }
+        if(o<m) return o;
+        return -1;
+    }
+};
