@@ -1,0 +1,11 @@
+class Solution {
+public:
+    int search(const ArrayReader& reader, int target) {
+        int n=0;
+        for(int i=13;i>=0;i--){
+            if(reader.get(n+pow(2,i))<=target) n+=pow(2,i);
+        }
+        if(reader.get(n)==target) return n;
+        return -1;
+    }
+};
