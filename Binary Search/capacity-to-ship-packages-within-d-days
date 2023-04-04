@@ -1,0 +1,24 @@
+class Solution {
+public:
+    bool possible(vector<int>& a,int k,int n){
+        int o,s;
+        o=1;
+        s=0;
+        for(auto& i:a){
+            if((s+i)>n){
+                o++;
+                s=0;
+            }
+            s+=i;
+            if(i>n) return 0;
+        }
+        return (o<=k);
+    }
+    int shipWithinDays(vector<int>& a, int k) {
+        int n=0;
+        for(int i=24;i>=0;i--){
+            if(possible(a,k,n+pow(2,i))==0) n+=pow(2,i);
+        }
+        return n+1;
+    }
+};
