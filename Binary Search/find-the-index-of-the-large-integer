@@ -1,0 +1,23 @@
+class Solution {
+public:
+    int getIndex(ArrayReader &a) {
+        int n,m,o,p,q,r,s;
+        q=a.length()-1;
+        p=0;
+        while(p!=q){
+            o=(p+q)/2;
+            if((p+q)%2==0){
+                m=a.compareSub(p,o-1,o+1,q);
+                if(m==0) return o;
+                if(m==1) q=o-1;
+                else p=o+1;
+            }
+            else{
+                m=a.compareSub(p,o,o+1,q);
+                if(m==1) q=o;
+                else p=o+1;
+            }
+        }
+        return p;
+    }
+};
