@@ -1,0 +1,15 @@
+class Solution {
+public:
+	bool possible(vector<int>& a,int k,int n){
+		int o=0;
+		for(auto& i:a) o+=i/n;
+		return (o>=k);
+	}
+    int maxLength(vector<int>& a, int k) {
+    int o=0;
+		for(int i=16;i>=0;i--){
+			if(possible(a,k,o+pow(2,i))) o+=pow(2,i);
+		}
+		return o;
+    }
+};
