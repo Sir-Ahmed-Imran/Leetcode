@@ -1,0 +1,26 @@
+class Solution {
+public:
+    bool possible(vector<int>& a,int k, int n){
+      int m,o;
+      o=m=0;
+      for(auto& i:a){
+        m+=i;
+        if(m>=n){
+          m=0;
+          o++;
+        }
+      }
+      if(o>k) return 1;
+      return 0;
+    }
+    int maximizeSweetness(vector<int>& a, int k) {
+        int n,m,o,p,q;
+        o=0;
+        for(int i=29;i>=0;i--){
+          p=pow(2,i);
+          if(possible(a,k,o+p)) o+=p;
+        }
+        return o;
+        
+    }
+};
