@@ -1,0 +1,29 @@
+class Solution {
+public:
+    int findInMountainArray(int t, MountainArray &a) {
+        int n,m,o,p,q;
+        n=a.length();
+        m=log2(n-1);
+        o=0;
+        for(int i=m;i>=0;i--){
+            if(o+(1<<i)>=n) continue;
+            if(a.get(o+(1<<i))>a.get(o+(1<<i)-1)) o+=(1<<i);
+        }
+        m=log2(o);
+        p=-1;
+        for(int i=m;i>=0;i--){
+            if(p+(1<<i)>o) continue;
+            if(a.get(p+(1<<i))<=t) p+=(1<<i);
+        }
+        if(p>=0 && a.get(p)==t) return p;
+        p=o;
+        m=log2(n-o);
+        for(int i=m;i>=0;i--){
+            if(p+(1<<i)>=n) continue;
+            if(a.get(p+(1<<i))>=t) p+=(1<<i);
+        }
+        if(p>=o && a.get(p)==t) return p;
+        return -1;
+        return o;
+    }
+};
