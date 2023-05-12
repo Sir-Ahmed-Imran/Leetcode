@@ -1,0 +1,12 @@
+class Solution {
+public:
+    int kthSmallest(vector<vector<int>>& m, int k) {
+        int n=m.size();
+        vector<int> a;
+        for(auto& i:m)
+            for(auto& j:i)
+                a.push_back(j);
+        sort(a.begin(),a.end());
+        return a[k-1];
+    }
+};
