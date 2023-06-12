@@ -1,0 +1,24 @@
+class Solution {
+public:
+	bool in(int n,vector<int>& a){
+		int o=0;
+		for(int i=8;i>=0;i--){
+			if(o+(1<<i)>=a.size()) continue;
+			if(a[o+(1<<i)]<=n) o+=(1<<i);
+		}
+		return (a[o]==n);
+	}
+    int smallestCommonElement(vector<vector<int>>& a) {
+			int n,m,o,p,q;
+			n=a.size();
+			m=a[0].size();
+			for(auto& i:a[0]){
+				o=1;
+				for(auto& j:a)
+					if(!in(i,j))
+						o=0;
+				if(o) return i;
+			}
+			return -1;
+    }
+};
