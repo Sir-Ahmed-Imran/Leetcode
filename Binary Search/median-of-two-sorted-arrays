@@ -1,0 +1,19 @@
+class Solution {
+public:
+    double findMedianSortedArrays(vector<int>& x, vector<int>& y) {
+        int n,m,o,p,q;
+        vector<int> v;
+        p=q=0;
+        while(p<x.size() && q<y.size()){
+            v.push_back(min(x[p],y[q]));
+            if(x[p]<y[q]) p++;
+            else q++;
+        }
+        for(int i=p;i<x.size();i++)
+            v.push_back(x[i]);
+        for(int i=q;i<y.size();i++)
+            v.push_back(y[i]);
+        o=x.size()+y.size();
+        return double(v[o/2]+v[o/2+o%2-1])/2;
+    }
+};
