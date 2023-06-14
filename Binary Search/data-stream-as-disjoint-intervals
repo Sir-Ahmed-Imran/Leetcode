@@ -1,0 +1,26 @@
+class SummaryRanges {
+public:
+    map<int,bool> a;
+    SummaryRanges() {
+        a.clear();
+    }
+    
+    void addNum(int v) {
+        a[v]=1;
+    }
+    
+    vector<vector<int>> getIntervals() {
+        int o=0;
+        vector<vector<int>> v;
+        for(int i=0;i<10001;i++){
+            if(a[i] && !a[i-1] && !a[i+1])
+                v.push_back({i,i});
+            else if(a[i] && !a[i-1])
+                v.push_back({i});
+            else if(a[i] && !a[i+1])
+                v[o].push_back(i);
+            o+=(a[i] && !a[i+1]);
+        }
+        return v;
+    }
+};
